@@ -39,7 +39,6 @@ const MovieDetails = () => {
 
     return (
       <main className={css.main}>
-        <div className={css.wrap}>
           <p>
             <NavLink
               to={refLocation.current.state?.from ?? '/'}
@@ -63,7 +62,6 @@ const MovieDetails = () => {
             <h3>Genres:</h3>
             <p>{genres ? genres.map(genre => genre.name).join(' ') : '-'}</p>
           </div>
-        </div>
         <h2>Additional information</h2>
         <ul className={css.list}>
           <li className={css.list_item}>
