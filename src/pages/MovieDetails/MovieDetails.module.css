@@ -27,6 +27,16 @@
     transform: translateY(4px);
 }
 
+.wrap {
+    display: flex;
+    align-items: center;
+}
+
+.image {
+    width: 500px;
+    margin-right: 50px;
+}
+
 .main {
     display: flex;
     flex-direction: column;
