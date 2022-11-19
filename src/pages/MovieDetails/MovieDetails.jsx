@@ -53,7 +53,7 @@ const MovieDetails = () => {
             src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
             alt={title}
           />
-          <div>
+          <div className={css.info}>
             <h2>
               {title} {new Date(release_date).getFullYear()}
             </h2>
