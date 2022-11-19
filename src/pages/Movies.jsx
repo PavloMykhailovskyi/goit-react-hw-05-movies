@@ -1,61 +1,55 @@
 import Notiflix from "notiflix";
 import { useEffect } from "react";
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { getMovies } from "services/API";
-import { SearchBar } from "components/SearchBar";
+import { SearchBar } from "components/SearchBar/SearchBar";
+import { MoviesList } from "components/MoviesList/MoviesList";
 
-export const Movies = () => {
+const Movies = () => {
     const [movies, setMovies] = useState([]);
     const [query, setQuery] = useState('');
-    const [loading, setLoading] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchWords = searchParams.get('data') ?? '';
 
-    const onHandleSubmit = query => {
-        setQuery(query);
+
+
+    const onHandleSubmit = data => {
+        setQuery(data);
         setMovies([]);
-        setLoading(true);
+        setSearchParams(data !== '' ? {data} : {})
     }
 
     useEffect(() => {
-        if (!loading) {
+        if ( !query && !searchWords) {
             return;
         }
 
         async function downloadMovies() {
             try {
-                const movies = await getMovies(query);
+                const movies = await getMovies(
+                  searchWords ? searchWords : query
+                );
                 if (movies.length === 0) {
                     Notiflix.Notify.failure('Sorry, your quest has no result!')
                 }
                 setMovies(movies);
-                setLoading(false);
             } catch (error) {
                 
-            } finally {
-                setLoading(false);
             }
         }
 
         downloadMovies()
-    }, [query, loading])
+    }, [query, searchWords])
 
     return (
-        <main>
-            <SearchBar onSubmit={onHandleSubmit} />
-            <ul>
-                {movies && movies.map((movie => {
-                    return (
-                        <li key={movie.id}>
-                            <Link to={`${movie.id}`}>
-                                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-                                <h3>{movie.title}</h3>
-                            </Link>
-                        </li>
-                    )
-                }))}
-            </ul>
-        </main>
-    )
+      <main>
+        <SearchBar onSubmit={onHandleSubmit} />
+        {movies && <MoviesList movies={movies} />}
+      </main>
+    );
 
 
 }
+
+export default Movies;

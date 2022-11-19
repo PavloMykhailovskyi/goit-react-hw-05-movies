@@ -1,0 +1,48 @@
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+}
+
+
+.nav_link {
+    font-size: 22px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  
+  
+}
+
+
+.nav_link:not(:first-child) {
+    margin-left: 110px;
+}
+
+
+.nav_link:hover,
+.nav_link:focus {
+    transition: 0.5s ease;
+    background-color: rgb(186, 179, 192);
+    color: white;
+    border-color: transparent;
+}
+.nav_link:active {
+    transition: 0.5s ease;
+    background-color: rgb(234, 164, 164);
+    color: white;
+    transform: translateY(4px);
+}
+
+

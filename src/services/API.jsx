@@ -34,7 +34,7 @@ export const getMovieDetails = async movie_id => {
     }
 
     const response = await axios.get(`/movie/${movie_id}`, options)
-    return response.data.results;
+    return response.data;
 }
 
 export const getMovieCast = async movieId => {
