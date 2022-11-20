@@ -39,14 +39,15 @@ const MovieDetails = () => {
 
     return (
       <main className={css.main}>
-          <p>
-            <NavLink
-              to={refLocation.current.state?.from ?? '/'}
-              className={css.link_back}
-            >
-              Get back
-            </NavLink>
-          </p>
+        <p>
+          <NavLink
+            to={refLocation.current.state?.from ?? '/'}
+            className={css.link_back}
+          >
+            Get back
+          </NavLink>
+        </p>
+        <div className={css.wrap}>
           <img
             className={css.image}
             src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
@@ -62,6 +63,7 @@ const MovieDetails = () => {
             <h3>Genres:</h3>
             <p>{genres ? genres.map(genre => genre.name).join(' ') : '-'}</p>
           </div>
+        </div>
         <h2>Additional information</h2>
         <ul className={css.list}>
           <li className={css.list_item}>

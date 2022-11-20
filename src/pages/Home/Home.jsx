@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getTrendingMovies } from "services/API";
 import css from './Home.module.css'
 
